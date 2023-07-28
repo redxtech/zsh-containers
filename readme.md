@@ -1,6 +1,6 @@
 # zsh-containers
 
-> zsh-containers is a zsh plugin that provides aliases, completions, and better interoperability between podman and docker commands based on which you have installed.
+> zsh-containers is a zsh plugin that provides aliases and better interoperability between podman and docker commands based on which you have installed.
 
 ## installing
 
@@ -23,6 +23,10 @@ Install it with your favourite zsh package manager, or clone it directly to your
 ```zsh
 plugins=(... containers)
 ```
+
+## completion
+
+i would recommend using [greymd/docker-zsh-completion](https://github.com/greymd/docker-zsh-completion) for up-to-date completions pulled weekly from upstream.
 
 ## podman -> docker
 
