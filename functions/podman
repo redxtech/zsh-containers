@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+podman() {
+  # if the first argument is compose, take it out of the args, and pass them to podman-compose
+  # otherwise, just pass them all to podman
+  if test "$1" = "compose"; then
+		shift
+		podman-compose "$@"
+	else
+		podman "$@"
+	fi
+}
