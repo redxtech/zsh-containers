@@ -7,6 +7,6 @@ podman() {
 		shift
 		podman-compose "$@"
 	else
-		podman "$@"
+		command podman "$@"
 	fi
 }
