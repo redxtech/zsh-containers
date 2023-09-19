@@ -16,3 +16,9 @@ fi
 
 # load aliases
 source "${0:h}/aliases.zsh"
+
+# kubernetes aliases
+if command -v kubectl >/dev/null; then
+  source "${0:h}/kubectl.zsh"
+fi
+

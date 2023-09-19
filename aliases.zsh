@@ -34,25 +34,29 @@ alias dxc='docker container exec'
 alias dxcit='docker container exec -it'
 
 # docker compose aliases
-(( ${+commands[docker-compose]} )) && dccmd='docker-compose' || dccmd='docker compose'
 
-alias dco="$dccmd"
-alias dcb="$dccmd build"
-alias dce="$dccmd exec"
-alias dcps="$dccmd ps"
-alias dcrestart="$dccmd restart"
-alias dcrm="$dccmd rm"
-alias dcr="$dccmd run"
-alias dcstop="$dccmd stop"
-alias dcup="$dccmd up"
-alias dcupb="$dccmd up --build"
-alias dcupd="$dccmd up -d"
-alias dcupdb="$dccmd up -d --build"
-alias dcdn="$dccmd down"
-alias dcl="$dccmd logs"
-alias dclf="$dccmd logs -f"
-alias dcpull="$dccmd pull"
-alias dcstart="$dccmd start"
-alias dck="$dccmd kill"
+if command -v docker-compose >/dev/null || command -v podman-compose >/dev/null; then
+  dccmd='docker-compose'
 
-unset dccmd
+  alias dco="$dccmd"
+  alias dcb="$dccmd build"
+  alias dce="$dccmd exec"
+  alias dcps="$dccmd ps"
+  alias dcrestart="$dccmd restart"
+  alias dcrm="$dccmd rm"
+  alias dcr="$dccmd run"
+  alias dcstop="$dccmd stop"
+  alias dcup="$dccmd up"
+  alias dcupb="$dccmd up --build"
+  alias dcupd="$dccmd up -d"
+  alias dcupdb="$dccmd up -d --build"
+  alias dcdn="$dccmd down"
+  alias dcl="$dccmd logs"
+  alias dclf="$dccmd logs -f"
+  alias dcpull="$dccmd pull"
+  alias dcstart="$dccmd start"
+  alias dck="$dccmd kill"
+
+  unset dccmd
+fi
+
