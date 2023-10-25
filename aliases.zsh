@@ -1,42 +1,54 @@
+# docker command
+if command -v podman >/dev/null; then
+  d='podman'
+else
+  d='docker'
+fi
+
 # docker aliases
-alias dbl='docker build'
-alias dcin='docker container inspect'
-alias dcls='docker container ls'
-alias dclsa='docker container ls -a'
-alias dib='docker image build'
-alias dii='docker image inspect'
-alias dils='docker image ls'
-alias dipu='docker image push'
-alias dirm='docker image rm'
-alias dit='docker image tag'
-alias dlo='docker container logs'
-alias dnc='docker network create'
-alias dncn='docker network connect'
-alias dndcn='docker network disconnect'
-alias dni='docker network inspect'
-alias dnls='docker network ls'
-alias dnrm='docker network rm'
-alias dpo='docker container port'
-alias dpu='docker pull'
-alias dr='docker container run'
-alias drit='docker container run -it'
-alias drm='docker container rm'
-alias 'drm!'='docker container rm -f'
-alias dst='docker container start'
-alias drs='docker container restart'
-alias dsta='docker stop $(docker ps -q)'
-alias dstp='docker container stop'
-alias dtop='docker top'
-alias dvi='docker volume inspect'
-alias dvls='docker volume ls'
-alias dvprune='docker volume prune'
-alias dxc='docker container exec'
-alias dxcit='docker container exec -it'
+alias dbl="$d build"
+alias dcin="$d container inspect"
+alias dcls="$d container ls"
+alias dclsa="$d container ls -a"
+alias dib="$d image build"
+alias dii="$d image inspect"
+alias dils="$d image ls"
+alias dipu="$d image push"
+alias dirm="$d image rm"
+alias dit="$d image tag"
+alias dlo="$d container logs"
+alias dnc="$d network create"
+alias dncn="$d network connect"
+alias dndcn="$d network disconnect"
+alias dni="$d network inspect"
+alias dnls="$d network ls"
+alias dnrm="$d network rm"
+alias dpo="$d container port"
+alias dpu="$d pull"
+alias dr="$d container run"
+alias drit="$d container run -it"
+alias drm="$d container rm"
+alias 'drm!'="$d container rm -f"
+alias dst="$d container start"
+alias drs="$d container restart"
+alias dsta="$d stop $($d ps -q)"
+alias dstp="$d container stop"
+alias dtop="$d top"
+alias dvi="$d volume inspect"
+alias dvls="$d volume ls"
+alias dvprune="$d volume prune"
+alias dxc="$d container exec"
+alias dxcit="$d container exec -it"
 
 # docker compose aliases
 
 if command -v docker-compose >/dev/null || command -v podman-compose >/dev/null; then
-  dccmd='docker-compose'
+  if command -v podman-compose >/dev/null; then
+    dccmd='podman-compose'
+  else
+    dccmd='docker compose'
+  fi
+
 
   alias dco="$dccmd"
   alias dcb="$dccmd build"
