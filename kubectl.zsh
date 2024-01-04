@@ -5,14 +5,14 @@ source <(kubectl completion zsh)
 
 # set aliases to use kubecolor if it's installed
 if command -v kubecolor >/dev/null; then
-  kcmd="kubecolor"
+  __container_kube_cmd="kubecolor"
   compdef kubecolor=kubectl
 else 
-  kcmd="kubectl"
+  __container_kube_cmd="kubectl"
 fi
 
 # this command is used a lot
-alias k="$kcmd"
+alias k="$__container_kube_cmd"
 
 # switch namespaces
 alias kns="kubens"
@@ -21,39 +21,39 @@ alias kns="kubens"
 alias ktx="kubectx"
 
 # Execute a kubectl command against all namespaces
-alias kca="_kca(){ $kcmd \"$@\" --all-namespaces;  unset -f _kca; }; _kca"
+alias kca="_kca(){ $__container_kube_cmd \"$@\" --all-namespaces;  unset -f _kca; }; _kca"
 
 # Apply a YAML file
-alias kaf="$kcmd apply -f"
+alias kaf="$__container_kube_cmd apply -f"
 
 # Apply a kustomization directory
-alias kak="$kcmd apply -k"
+alias kak="$__container_kube_cmd apply -k"
 
 # Drop into an interactive terminal on a container
-alias keti="$kcmd exec -t -i"
+alias keti="$__container_kube_cmd exec -t -i"
 
 # Manage configuration quickly to switch contexts between local, dev ad staging.
-alias kcuc="$kcmd config use-context"
-alias kcsc="$kcmd config set-context"
-alias kcdc="$kcmd config delete-context"
-alias kccc="$kcmd config current-context"
+alias kcuc="$__container_kube_cmd config use-context"
+alias kcsc="$__container_kube_cmd config set-context"
+alias kcdc="$__container_kube_cmd config delete-context"
+alias kccc="$__container_kube_cmd config current-context"
 
 # List all contexts
-alias kcgc="$kcmd config get-contexts"
+alias kcgc="$__container_kube_cmd config get-contexts"
 
 # General aliases
-alias kdel="$kcmd delete"
-alias kdelf="$kcmd delete -f"
+alias kdel="$__container_kube_cmd delete"
+alias kdelf="$__container_kube_cmd delete -f"
 
 # Pod management.
-alias kgp="$kcmd get pods"
-alias kgpa="$kcmd get pods --all-namespaces"
+alias kgp="$__container_kube_cmd get pods"
+alias kgpa="$__container_kube_cmd get pods --all-namespaces"
 alias kgpw="kgp --watch"
 alias kgpwide="kgp -o wide"
-alias kep="$kcmd edit pods"
-alias kdp="$kcmd describe pods"
-alias kdelp="$kcmd delete pods"
-alias kgpall="$kcmd get pods --all-namespaces -o wide"
+alias kep="$__container_kube_cmd edit pods"
+alias kdp="$__container_kube_cmd describe pods"
+alias kdelp="$__container_kube_cmd delete pods"
+alias kgpall="$__container_kube_cmd get pods --all-namespaces -o wide"
 
 # get pod by label: kgpl "app=myapp" -n myns
 alias kgpl="kgp -l"
@@ -62,133 +62,133 @@ alias kgpl="kgp -l"
 alias kgpn="kgp -n"
 
 # Service management.
-alias kgs="$kcmd get svc"
-alias kgsa="$kcmd get svc --all-namespaces"
+alias kgs="$__container_kube_cmd get svc"
+alias kgsa="$__container_kube_cmd get svc --all-namespaces"
 alias kgsw="kgs --watch"
 alias kgswide="kgs -o wide"
-alias kes="$kcmd edit svc"
-alias kds="$kcmd describe svc"
-alias kdels="$kcmd delete svc"
+alias kes="$__container_kube_cmd edit svc"
+alias kds="$__container_kube_cmd describe svc"
+alias kdels="$__container_kube_cmd delete svc"
 
 # Ingress management
-alias kgi="$kcmd get ingress"
-alias kgia="$kcmd get ingress --all-namespaces"
-alias kei="$kcmd edit ingress"
-alias kdi="$kcmd describe ingress"
-alias kdeli="$kcmd delete ingress"
+alias kgi="$__container_kube_cmd get ingress"
+alias kgia="$__container_kube_cmd get ingress --all-namespaces"
+alias kei="$__container_kube_cmd edit ingress"
+alias kdi="$__container_kube_cmd describe ingress"
+alias kdeli="$__container_kube_cmd delete ingress"
 
 # Namespace management
-alias kgns="$kcmd get namespaces"
-alias kens="$kcmd edit namespace"
-alias kdns="$kcmd describe namespace"
-alias kdelns="$kcmd delete namespace"
-alias kcn="$kcmd config set-context --current --namespace"
+alias kgns="$__container_kube_cmd get namespaces"
+alias kens="$__container_kube_cmd edit namespace"
+alias kdns="$__container_kube_cmd describe namespace"
+alias kdelns="$__container_kube_cmd delete namespace"
+alias kcn="$__container_kube_cmd config set-context --current --namespace"
 
 # ConfigMap management
-alias kgcm="$kcmd get configmaps"
-alias kgcma="$kcmd get configmaps --all-namespaces"
-alias kecm="$kcmd edit configmap"
-alias kdcm="$kcmd describe configmap"
-alias kdelcm="$kcmd delete configmap"
+alias kgcm="$__container_kube_cmd get configmaps"
+alias kgcma="$__container_kube_cmd get configmaps --all-namespaces"
+alias kecm="$__container_kube_cmd edit configmap"
+alias kdcm="$__container_kube_cmd describe configmap"
+alias kdelcm="$__container_kube_cmd delete configmap"
 
 # Secret management
-alias kgsec="$kcmd get secret"
-alias kgseca="$kcmd get secret --all-namespaces"
-alias kdsec="$kcmd describe secret"
-alias kdelsec="$kcmd delete secret"
+alias kgsec="$__container_kube_cmd get secret"
+alias kgseca="$__container_kube_cmd get secret --all-namespaces"
+alias kdsec="$__container_kube_cmd describe secret"
+alias kdelsec="$__container_kube_cmd delete secret"
 
 # Deployment management.
-alias kgd="$kcmd get deployment"
-alias kgda="$kcmd get deployment --all-namespaces"
+alias kgd="$__container_kube_cmd get deployment"
+alias kgda="$__container_kube_cmd get deployment --all-namespaces"
 alias kgdw="kgd --watch"
 alias kgdwide="kgd -o wide"
-alias ked="$kcmd edit deployment"
-alias kdd="$kcmd describe deployment"
-alias kdeld="$kcmd delete deployment"
-alias ksd="$kcmd scale deployment"
-alias krsd="$kcmd rollout status deployment"
+alias ked="$__container_kube_cmd edit deployment"
+alias kdd="$__container_kube_cmd describe deployment"
+alias kdeld="$__container_kube_cmd delete deployment"
+alias ksd="$__container_kube_cmd scale deployment"
+alias krsd="$__container_kube_cmd rollout status deployment"
 
 function kres(){
-  $kcmd set env $@ REFRESHED_AT=$(date +%Y%m%d%H%M%S)
+  $__container_kube_cmd set env $@ REFRESHED_AT=$(date +%Y%m%d%H%M%S)
 }
 
 # Rollout management.
-alias kgrs="$kcmd get replicaset"
-alias kdrs="$kcmd describe replicaset"
-alias kers="$kcmd edit replicaset"
-alias krh="$kcmd rollout history"
-alias krr="$kcmd rollout restart"
-alias krd="$kcmd rollout restart deployment"
-alias kru="$kcmd rollout undo"
+alias kgrs="$__container_kube_cmd get replicaset"
+alias kdrs="$__container_kube_cmd describe replicaset"
+alias kers="$__container_kube_cmd edit replicaset"
+alias krh="$__container_kube_cmd rollout history"
+alias krr="$__container_kube_cmd rollout restart"
+alias krd="$__container_kube_cmd rollout restart deployment"
+alias kru="$__container_kube_cmd rollout undo"
 
 # Statefulset management.
-alias kgss="$kcmd get statefulset"
-alias kgssa="$kcmd get statefulset --all-namespaces"
+alias kgss="$__container_kube_cmd get statefulset"
+alias kgssa="$__container_kube_cmd get statefulset --all-namespaces"
 alias kgssw="kgss --watch"
 alias kgsswide="kgss -o wide"
-alias kess="$kcmd edit statefulset"
-alias kdss="$kcmd describe statefulset"
-alias kdelss="$kcmd delete statefulset"
-alias ksss="$kcmd scale statefulset"
-alias krsss="$kcmd rollout status statefulset"
+alias kess="$__container_kube_cmd edit statefulset"
+alias kdss="$__container_kube_cmd describe statefulset"
+alias kdelss="$__container_kube_cmd delete statefulset"
+alias ksss="$__container_kube_cmd scale statefulset"
+alias krsss="$__container_kube_cmd rollout status statefulset"
 
 # Port forwarding
-alias kpf="$kcmd port-forward"
+alias kpf="$__container_kube_cmd port-forward"
 
 # Tools for accessing all information
-alias kga="$kcmd get all"
-alias kgaa="$kcmd get all --all-namespaces"
+alias kga="$__container_kube_cmd get all"
+alias kgaa="$__container_kube_cmd get all --all-namespaces"
 
 # Logs
-alias kl="$kcmd logs"
-alias kl1h="$kcmd logs --since 1h"
-alias kl1m="$kcmd logs --since 1m"
-alias kl1s="$kcmd logs --since 1s"
-alias klf="$kcmd logs -f"
-alias klf1h="$kcmd logs --since 1h -f"
-alias klf1m="$kcmd logs --since 1m -f"
-alias klf1s="$kcmd logs --since 1s -f"
+alias kl="$__container_kube_cmd logs"
+alias kl1h="$__container_kube_cmd logs --since 1h"
+alias kl1m="$__container_kube_cmd logs --since 1m"
+alias kl1s="$__container_kube_cmd logs --since 1s"
+alias klf="$__container_kube_cmd logs -f"
+alias klf1h="$__container_kube_cmd logs --since 1h -f"
+alias klf1m="$__container_kube_cmd logs --since 1m -f"
+alias klf1s="$__container_kube_cmd logs --since 1s -f"
 
 # File copy
-alias kcp="$kcmd cp"
+alias kcp="$__container_kube_cmd cp"
 
 # Node Management
-alias kgno="$kcmd get nodes"
-alias keno="$kcmd edit node"
-alias kdno="$kcmd describe node"
-alias kdelno="$kcmd delete node"
+alias kgno="$__container_kube_cmd get nodes"
+alias keno="$__container_kube_cmd edit node"
+alias kdno="$__container_kube_cmd describe node"
+alias kdelno="$__container_kube_cmd delete node"
 
 # PVC management.
-alias kgpvc="$kcmd get pvc"
-alias kgpvca="$kcmd get pvc --all-namespaces"
+alias kgpvc="$__container_kube_cmd get pvc"
+alias kgpvca="$__container_kube_cmd get pvc --all-namespaces"
 alias kgpvcw="kgpvc --watch"
-alias kepvc="$kcmd edit pvc"
-alias kdpvc="$kcmd describe pvc"
-alias kdelpvc="$kcmd delete pvc"
+alias kepvc="$__container_kube_cmd edit pvc"
+alias kdpvc="$__container_kube_cmd describe pvc"
+alias kdelpvc="$__container_kube_cmd delete pvc"
 
 # Service account management.
-alias kdsa="$kcmd describe sa"
-alias kdelsa="$kcmd delete sa"
+alias kdsa="$__container_kube_cmd describe sa"
+alias kdelsa="$__container_kube_cmd delete sa"
 
 # DaemonSet management.
-alias kgds="$kcmd get daemonset"
+alias kgds="$__container_kube_cmd get daemonset"
 alias kgdsw="kgds --watch"
-alias keds="$kcmd edit daemonset"
-alias kdds="$kcmd describe daemonset"
-alias kdelds="$kcmd delete daemonset"
+alias keds="$__container_kube_cmd edit daemonset"
+alias kdds="$__container_kube_cmd describe daemonset"
+alias kdelds="$__container_kube_cmd delete daemonset"
 
 # CronJob management.
-alias kgcj="$kcmd get cronjob"
-alias kecj="$kcmd edit cronjob"
-alias kdcj="$kcmd describe cronjob"
-alias kdelcj="$kcmd delete cronjob"
+alias kgcj="$__container_kube_cmd get cronjob"
+alias kecj="$__container_kube_cmd edit cronjob"
+alias kdcj="$__container_kube_cmd describe cronjob"
+alias kdelcj="$__container_kube_cmd delete cronjob"
 
 # Job management.
-alias kgj="$kcmd get job"
-alias kej="$kcmd edit job"
-alias kdj="$kcmd describe job"
-alias kdelj="$kcmd delete job"
+alias kgj="$__container_kube_cmd get job"
+alias kej="$__container_kube_cmd edit job"
+alias kdj="$__container_kube_cmd describe job"
+alias kdelj="$__container_kube_cmd delete job"
 
 # Only run if the user actually has kubectl installed
-function kj() { $kcmd "$@" -o json | jq; }
-function kjx() { $kcmd "$@" -o json | fx; }
+function kj() { $__container_kube_cmd "$@" -o json | jq; }
+function kjx() { $__container_kube_cmd "$@" -o json | fx; }
