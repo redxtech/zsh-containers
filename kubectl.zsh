@@ -3,11 +3,13 @@
 # get zsh complete kubectl
 source <(kubectl completion zsh)
 
-# set kubectl to use kubecolor if it's installed
-command -v kubecolor >/dev/null && alias kubectl="kubecolor"
-
-# This command is used a LOT both below and in daily life
-alias k="kubectl"
+# set k to use kubecolor if it's installed
+if command -v kubecolor >/dev/null; then
+  compdef kubecolor=kubectl
+  alias k="kubecolor"
+else 
+  alias k="kubectl"
+fi
 
 # switch namespaces
 alias kns="kubens"
